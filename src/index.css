@@ -1,5 +1,8 @@
-label {
-  display: block;
+* {
+  box-sizing: border-box;
+}
+
+label, fieldset{
   padding: 4px;
   margin: 4px;
   font-size: 20px;
@@ -12,4 +15,70 @@ input {
   border-radius: 6px;
   padding: 4px;
   font-size: 16px;
+  border: 1px solid gray;
+}
+
+.years {
+  padding: 4px;
+  margin: 4px;
+  font-size: 20px;
+  display: inline-block;
+  max-width: 300px;
+}
+
+fieldset {
+  border-radius: 6px;
+  justify-content: center;
+  max-width: 345px;
+}
+
+button {
+  display: block;
+  min-width: 350px;
+  padding: 6px;
+  margin: 6px;
+  border-radius: 6px;
+  font-size: 18px;
+  background-color: white;
+  border: 1px solid gray;
+}
+
+.cards {
+  margin-bottom: 1em;
+  border: 1px solid gray;
+  max-width: 365px;
+  padding: 6px;
+  padding-bottom: 1em;
+  border-radius: 6px;
+  transform-origin: top;
+  animation: fade-in 300ms ease-in;
+}
+
+@keyframes fade-in {
+  from {
+    transform: scaleY(0);
+  } to {
+    transform: scaleY(1);
+  }
+}
+
+.card-delete {
+  transform-origin: top;
+  animation: fade-out 300ms ease-out;
+  transition-behavior: allow-discrete;
+}
+
+@keyframes fade-out {
+  from {
+    transform: scaleY(1);
+  } to {
+    transform: scaleY(0);
+  }
+}
+
+.cards button {
+  min-width: 340px;
+  background-color: #ED5E68;
+  color: #FFFEFE;
+  margin-top: 1em;
 }

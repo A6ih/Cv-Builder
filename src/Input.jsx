@@ -1,6 +1,6 @@
 const Input = ({label, text, handleInput, inputType}) => {
     return (
-        <label>{label}: <input type={inputType} onChange={handleInput} value={text}/>
+        <label>{label} <input type={inputType} onChange={handleInput} value={text}/>
         </label>
     )
 }
