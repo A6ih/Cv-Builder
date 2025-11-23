@@ -89,3 +89,8 @@ textarea {
   border-radius: 6px;
   padding: 4px;
 }
+
+input[type="date"] {
+  padding: 2px;
+  font-size: 14px;
+}
