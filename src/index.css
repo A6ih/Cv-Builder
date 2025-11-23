@@ -94,3 +94,64 @@ input[type="date"] {
   padding: 2px;
   font-size: 14px;
 }
+
+.section-button {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2px;
+  min-width: 365px;
+  border: 2px solid gray;
+  margin-top: 1.5em;
+}
+
+span {
+  transform-origin: center;
+  margin-right: 4px;
+  transition: transform 350ms;
+}
+
+.section-button > h2 {
+  padding: 0px;
+  margin: 0px;
+}
+
+.inactive {
+  display: none;
+}
+
+.rotate-icon {
+  transition: transform 350ms;
+  transform: rotate(180deg);
+}
+
+.drop-inactive {
+  transform-origin: top;
+  animation: drop-down-inactive 350ms ease-in;
+  animation-fill-mode: forwards;
+}
+
+.drop-active {
+  transform-origin: top;
+  animation: drop-down-active 350ms ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes drop-down-inactive {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+    display: none;
+  }
+}
+
+@keyframes drop-down-active {
+  0% {
+    display: block;
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

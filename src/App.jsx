@@ -11,13 +11,13 @@ function App() {
   const [work, setWork] = useState([{id: crypto.randomUUID(), role: "Accountant", company:"AC Firm", dateStart:"2019-01-02", dateEnd:"2022-01-01", description:""}])
   return (
     <>
-     <Section header="General Information"> 
+     <Section header="General Information" className="general-info">
         <Input label="Name" text={personalInfo.name} handleInput={(e) => setPersonalInfo({...personalInfo, name:e.target.value})} inputType="text"/>
         <Input label="Profession" text={personalInfo.profession} handleInput={(e) => setPersonalInfo({...personalInfo, profession:e.target.value})} inputType="text"/>
         <Input label="Email" text={personalInfo.email} handleInput={(e) => setPersonalInfo({...personalInfo, email:e.target.value})} inputType="email"/>
         <Input label="Phone" text={personalInfo.phone} handleInput={(e) => setPersonalInfo({...personalInfo, phone:e.target.value})} inputType="tel"/>
      </Section>
-     <Section header="Summary">
+     <Section header="Summary" className="summary">
       <textarea placeholder="Write a brief summary about yourself" cols="37" rows="6" onChange={(e) => setSummary(e.target.value)} value={summary}></textarea>
      </Section>
      <Section className="education" header="Education">
