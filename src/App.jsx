@@ -1,12 +1,13 @@
 import { Fragment, useState } from "react"
 import Section from "./Section"
 import Input from "./Input"
-import {replaceEdu, addEdu} from "./educationHelper"
+import {replaceInfo, addEdu, deleteField, addWork} from "./infoHelpers" 
 import InputYear from "./InputYear"
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({name: "John Doe", profession:"Accountant", email: "johndoe@example.com", phone: 123456789})
   const [education, setEducation] = useState([{id: crypto.randomUUID(), degree: "BA Accounting", institution:"Mumbai University", yearStart:"2015", yearEnd:"2018"}])
+  const [work, setWork] = useState([{id: crypto.randomUUID(), role: "Accountant", company:"AC Firm", dateStart:"2019-01-02", dateEnd:"2022-01-01", description:""}])
   return (
     <>
      <Section header="General Information"> 
@@ -19,23 +20,46 @@ function App() {
         {education.map((edu) => {
           return (
              <div className="cards" key={edu.id}>
-               <Input label="Degree" text={edu.degree} handleInput={(e) => setEducation(replaceEdu(education, edu.id, e.target.value, "degree"))} inputType="text"/>
-               <Input label="Institution" text={edu.institution} handleInput={(e) => setEducation(replaceEdu(education, edu.id, e.target.value, "institution"))} inputType="text"/>
+               <Input label="Degree" text={edu.degree} handleInput={(e) => setEducation(replaceInfo(education, edu.id, e.target.value, "degree"))} inputType="text"/>
+               <Input label="Institution" text={edu.institution} handleInput={(e) => setEducation(replaceInfo(education, edu.id, e.target.value, "institution"))} inputType="text"/>
                <fieldset>
                 <legend>Years</legend>
-                <InputYear label="From" text={edu.yearStart} handleInput={(e) => setEducation(replaceEdu(education, edu.id, e.target.value, "yearStart"))} inputType="number"/>
-                <InputYear label="To" text={edu.yearEnd} handleInput={(e) => setEducation(replaceEdu(education, edu.id, e.target.value, "yearEnd"))} inputType="number"/>
+                <InputYear label="From" text={edu.yearStart} handleInput={(e) => setEducation(replaceInfo(education, edu.id, e.target.value, "yearStart"))} inputType="number"/>
+                <InputYear label="To" text={edu.yearEnd} handleInput={(e) => setEducation(replaceInfo(education, edu.id, e.target.value, "yearEnd"))} inputType="number"/>
                </fieldset>
                <button onClick={(e) => {
                   const parent = e.currentTarget.parentNode
-                  parent.classList.toggle("cards")
                   parent.classList.add("card-delete")
-                  setTimeout(() => setEducation(education.filter(e => e.id !== edu.id)), 300)
+                  deleteField(setEducation, education, edu.id)
                 }}>Delete</button>
             </div>
           )
         })}
         <button onClick={() => setEducation(education.concat(addEdu()))}>Add More</button>
+     </Section>
+     <Section className="work" header="Work Experience">
+        {
+          work.map(job => {
+            return (
+              <div className="cards" key={job.id}>
+                <Input label="Job Title" text={job.role} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "role"))} inputType="text"/>
+                <Input label="Company" text={job.company} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "company"))} inputType="text"/>
+                <fieldset>
+                <legend>Date</legend>
+                  <InputYear label="From" text={job.dateStart} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "dateStart"))} inputType="date"/>
+                  <InputYear label="To" text={job.dateEnd} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "dateEnd"))} inputType="date"/>
+                </fieldset>
+                <textarea value={job.text} onChange={(e) => setWork(replaceInfo(work, job.id, e.target.value, "description"))} placeholder="Description" rows="4" cols="36"></textarea>
+                <button onClick={(e) => {
+                  const parent = e.currentTarget.parentNode
+                  parent.classList.add("card-delete")
+                  deleteField(setWork, work, job.id)
+                }}>Delete</button>
+              </div>
+            )
+          })
+        }
+        <button onClick={() => setWork(work.concat(addWork()))}>Add More</button>
      </Section>
     </>
   )
