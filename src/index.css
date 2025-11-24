@@ -1,5 +1,19 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#root {
+  display: flex;
+  gap: 2em;
 }
 
 label, fieldset{
@@ -174,5 +188,65 @@ span {
   }
   100% {
     transform: scaleY(1);
+  }
+}
+
+#preview-container {
+  max-width: 700px;
+  line-height: 1.4;
+  margin-top: 1.5rem;
+}
+
+#preview-container > div {
+  margin-bottom: .75rem;
+}
+
+.preview-profession {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.preview-contact, #preview-skills-container {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.preview-title {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.preview-institution {
+  display: flex;
+  justify-content: space-between;
+}
+
+.preview-info-container {
+  margin-bottom: .5rem;
+}
+
+@media (max-width: 600px) {
+  #root {
+    flex-direction: column;
+  }
+
+  #preview-container *{
+    font-size: smaller;
+    margin: 2px;
+  }
+}
+
+@media print {
+  @page {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  body  {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  #edit-container {
+    display: none;
   }
 }
