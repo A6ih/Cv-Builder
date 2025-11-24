@@ -54,6 +54,21 @@ button {
   animation: fade-in 300ms ease-in;
 }
 
+.skill-cards {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: .5em;
+}
+
+.skill-cards input {
+  max-width: 200px;
+}
+
+.skill-cards label {
+  min-width: 265px;
+}
+
 @keyframes fade-in {
   from {
     transform: scaleY(0);
@@ -81,6 +96,12 @@ button {
   background-color: #ED5E68;
   color: #FFFEFE;
   margin-top: 1em;
+}
+
+.skill-delete.skill-delete {
+  min-width: 10px;
+  font-size: 16px;
+  margin-top: auto;
 }
 
 textarea {

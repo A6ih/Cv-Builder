@@ -17,8 +17,12 @@ const addWork = () => {
     return [{id: crypto.randomUUID(), role:"", company:"", dateStart:"", dateEnd:"", description:""}]
 }
 
+const addSkill = () => {
+    return [{id: crypto.randomUUID(), name: ""}]
+}
+
 const deleteField = (fn, array, id) => {
     setTimeout(() => fn(array.filter(obj => obj.id !== id)), 300)
 }
 
-export {replaceInfo, addEdu, deleteField, addWork}
+export {replaceInfo, addEdu, deleteField, addWork, addSkill}

@@ -1,6 +1,6 @@
-const Input = ({label, text, handleInput, inputType}) => {
+const Input = ({label, text, handleInput, inputType, placeholdText}) => {
     return (
-        <label>{label} <input type={inputType} onChange={handleInput} value={text}/>
+        <label>{label} <input type={inputType} onChange={handleInput} value={text} placeholder={placeholdText}/>
         </label>
     )
 }
