@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react"
+import { useState } from "react"
 import Section from "./Section"
 import Input from "./Input"
 import {replaceInfo, addEdu, deleteField, addWork, addSkill} from "./infoHelpers" 
@@ -8,21 +8,21 @@ function App() {
   const [personalInfo, setPersonalInfo] = useState({name: "John Doe", profession:"Accountant", email: "johndoe@example.com", phone: 123456789})
   const [summary, setSummary] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.");
   const [education, setEducation] = useState([{id: crypto.randomUUID(), degree: "BA Accounting", institution:"Mumbai University", yearStart:"2015", yearEnd:"2018"}])
-  const [work, setWork] = useState([{id: crypto.randomUUID(), role: "Accountant", company:"AC Firm", dateStart:"2019-01-02", dateEnd:"2022-01-01", description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."}])
+  const [work, setWork] = useState([{id: crypto.randomUUID(), role: "Accountant", company:"AC Firm", dateStart:"12/2022", dateEnd:"Present", description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."}])
   const [skills, setSkills] = useState([{id: crypto.randomUUID(), name: "Excel"}]);
   return (
    <>
     <div id="edit-container">
-     <Section header="General Information" className="general-info">
+     <Section header="General Information" className="general-info" spanClass="icon rotate-icon">
         <Input label="Name" text={personalInfo.name} handleInput={(e) => setPersonalInfo({...personalInfo, name:e.target.value})} inputType="text" placeholdText="Your Fullname"/>
         <Input label="Profession" text={personalInfo.profession} handleInput={(e) => setPersonalInfo({...personalInfo, profession:e.target.value})} inputType="text" placeholdText="Your Profession"/>
         <Input label="Email" text={personalInfo.email} handleInput={(e) => setPersonalInfo({...personalInfo, email:e.target.value})} inputType="email" placeholdText="(eg: name@example.com)"/>
         <Input label="Phone" text={personalInfo.phone} handleInput={(e) => setPersonalInfo({...personalInfo, phone:e.target.value})} inputType="tel" placeholdText="(eg: +35840123456)"/>
      </Section>
-     <Section header="Summary" className="summary">
-      <textarea placeholder="Write a brief summary about yourself" cols="37" rows="6" onChange={(e) => setSummary(e.target.value)} value={summary}></textarea>
+     <Section header="Summary" className="inactive summary">
+      <textarea placeholder="Write a brief summary about yourself" cols="41" rows="6" onChange={(e) => setSummary(e.target.value)} value={summary}></textarea>
      </Section>
-     <Section className="education" header="Education">
+     <Section className="inactive education" header="Education">
         {education.map((edu) => {
           return (
              <div className="cards" key={edu.id}>
@@ -43,7 +43,7 @@ function App() {
         })}
         <button onClick={() => setEducation(education.concat(addEdu()))}>Add Education</button>
      </Section>
-     <Section className="work" header="Work Experience">
+     <Section className="inactive work" header="Work Experience">
         {
           work.map(job => {
             return (
@@ -51,11 +51,11 @@ function App() {
                 <Input label="Job Title" text={job.role} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "role"))} inputType="text" placeholdText="Your Job Title/Role"/>
                 <Input label="Company" text={job.company} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "company"))} inputType="text" placeholdText="Company name"/>
                 <fieldset>
-                <legend>Date</legend>
-                  <InputYear label="From" text={job.dateStart} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "dateStart"))} inputType="date"/>
-                  <InputYear label="To" text={job.dateEnd} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "dateEnd"))} inputType="date"/>
+                <legend>Date <span>(Format month/year or Present)</span></legend>
+                  <Input label="From" text={job.dateStart} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "dateStart"))} inputType="text"  placeholdText="MM/YYYY"/>
+                  <Input label="To" text={job.dateEnd} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "dateEnd"))} inputType="text" placeholdText="MM/YYYY"/>
                 </fieldset>
-                <textarea value={job.description} onChange={(e) => setWork(replaceInfo(work, job.id, e.target.value, "description"))} placeholder="Description" rows="4" cols="36"></textarea>
+                <textarea value={job.description} onChange={(e) => setWork(replaceInfo(work, job.id, e.target.value, "description"))} placeholder="Description" rows="4" cols="39"></textarea>
                 <button onClick={(e) => {
                   const parent = e.currentTarget.parentNode
                   parent.classList.add("card-delete")
@@ -67,7 +67,7 @@ function App() {
         }
         <button onClick={() => setWork(work.concat(addWork()))}>Add Experience</button>
      </Section>
-     <Section className="skills" header="Skills">
+     <Section className="inactive skills" header="Skills">
         {
           skills.map(skill => {
             return(
@@ -85,6 +85,10 @@ function App() {
         }
         <button onClick={() => setSkills(skills.concat(addSkill()))}>Add Skill</button>
      </Section>
+     <div className="save-preview">
+       <button onClick={() => window.print()}>Print</button>
+       <button>Save as PDF</button>
+     </div>
     </div>
     <div id="preview-container">
       <div>
@@ -104,7 +108,7 @@ function App() {
               <p className="preview-title">{job.role}</p>
               <div className="preview-institution">
                 <p>{job.company}</p>
-                <p>{job.dateStart + " " + "To" + " " + job.dateEnd}</p>
+                <p>{job.dateStart + " " + "-" + " " + job.dateEnd}</p>
               </div>
               <p>{job.description}</p>
             </div>
@@ -119,7 +123,7 @@ function App() {
               <p className="preview-title">{edu.degree}</p>
               <div className="preview-institution">
                 <p>{edu.institution}</p>
-                <p>{edu.yearStart + " " + "To" + " " + edu.yearEnd}</p>
+                <p>{edu.yearStart + " " + "-" + " " + edu.yearEnd}</p>
               </div>
             </div>
           )

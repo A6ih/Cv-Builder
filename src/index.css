@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body {
@@ -58,6 +59,7 @@ button {
 }
 
 .cards {
+  margin-left: 1px;
   margin-bottom: 1em;
   border: 1px solid gray;
   max-width: 365px;
@@ -123,10 +125,17 @@ textarea {
   margin-top: 8px;
   border-radius: 6px;
   padding: 4px;
+  resize: none;
 }
 
-input[type="date"] {
-  padding: 2px;
+fieldset input[type ="text"] {
+  padding: 4px;
+  font-size: 16px;
+  max-width: 95px;
+  margin-left: 8px;
+}
+
+legend span {
   font-size: 14px;
 }
 
@@ -139,7 +148,8 @@ input[type="date"] {
   margin-top: 1.5em;
 }
 
-span {
+
+.icon {
   transform-origin: center;
   margin-right: 4px;
   transition: transform 350ms;
@@ -153,6 +163,11 @@ span {
 .inactive {
   display: none;
 }
+
+.general-info {
+  display: block;
+}
+
 
 .rotate-icon {
   transition: transform 350ms;
@@ -189,6 +204,25 @@ span {
   100% {
     transform: scaleY(1);
   }
+}
+
+.save-preview {
+  display: flex;
+  justify-content: flex-end;
+  margin: 4px;
+  max-width: 355px;
+  margin-top: 1.5rem;
+}
+
+.save-preview button {
+  flex: 1;
+  min-width: 0;
+  transition: background-color 300ms ease-out, transform 300ms ease-out;
+}
+
+.save-preview button:is(:hover, :focus) {
+  background-color: greenyellow;
+  transform: scale(1.1);
 }
 
 #preview-container {
