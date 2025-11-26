@@ -2,7 +2,7 @@
 
 A simple CV builder react web app that helps users to create a simple and plain CV
 
-Live preview CV-Builder
+Live preview [CV-Builder](https://clinquant-pastelito-47af7d.netlify.app/)
 
 # Features
 
