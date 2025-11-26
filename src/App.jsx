@@ -1,8 +1,8 @@
 import { useState } from "react"
-import Section from "./Section"
-import Input from "./Input"
+import Section from "./components/Section"
+import Input from "./components/Input"
 import {replaceInfo, addEdu, deleteField, addWork, addSkill} from "./infoHelpers" 
-import InputYear from "./InputYear"
+import InputYear from "./components/InputYear"
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({name: "John Doe", profession:"Accountant", email: "johndoe@example.com", phone: 123456789})
@@ -20,7 +20,7 @@ function App() {
         <Input label="Phone" text={personalInfo.phone} handleInput={(e) => setPersonalInfo({...personalInfo, phone:e.target.value})} inputType="tel" placeholdText="(eg: +35840123456)"/>
      </Section>
      <Section header="Summary" className="inactive summary">
-      <textarea placeholder="Write a brief summary about yourself" cols="41" rows="6" onChange={(e) => setSummary(e.target.value)} value={summary}></textarea>
+      <textarea  name="placeholder" placeholder="Write a brief summary about yourself" cols="41" rows="6" onChange={(e) => setSummary(e.target.value)} value={summary}></textarea>
      </Section>
      <Section className="inactive education" header="Education">
         {education.map((edu) => {
@@ -55,7 +55,7 @@ function App() {
                   <Input label="From" text={job.dateStart} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "dateStart"))} inputType="text"  placeholdText="MM/YYYY"/>
                   <Input label="To" text={job.dateEnd} handleInput={(e) => setWork(replaceInfo(work, job.id, e.target.value, "dateEnd"))} inputType="text" placeholdText="MM/YYYY"/>
                 </fieldset>
-                <textarea value={job.description} onChange={(e) => setWork(replaceInfo(work, job.id, e.target.value, "description"))} placeholder="Description" rows="4" cols="39"></textarea>
+                <textarea name="placeholder" value={job.description} onChange={(e) => setWork(replaceInfo(work, job.id, e.target.value, "description"))} placeholder="Description" rows="4" cols="39"></textarea>
                 <button onClick={(e) => {
                   const parent = e.currentTarget.parentNode
                   parent.classList.add("card-delete")
