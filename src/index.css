@@ -5,11 +5,18 @@
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+html {
+  width: 100vw;
+}
+
 body {
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4px;
+  color: #1e1e1e;
+  background-color: #FFFFFF;
 }
 
 
@@ -55,8 +62,9 @@ button {
   margin: 6px;
   border-radius: 6px;
   font-size: 18px;
-  background-color: white;
-  border: 1px solid gray;
+  color: #FFFEFE;
+  background-color: #4844A3;
+  border: none;
 }
 
 .cards {
@@ -113,6 +121,12 @@ button {
   background-color: #ED5E68;
   color: #FFFEFE;
   margin-top: 1em;
+  transition: background-color 350ms ease-in-out, transform 350ms ease-out;
+}
+
+.cards button:is(:hover, :focus) {
+  background-color: #FF1212;
+  transform: scaleY(1.1);
 }
 
 .skill-delete.skill-delete {
@@ -145,7 +159,6 @@ legend span {
   justify-content: space-between;
   margin-left: 2px;
   min-width: 365px;
-  border: 2px solid gray;
   margin-top: 1.5em;
 }
 
@@ -222,7 +235,7 @@ legend span {
 }
 
 .save-preview button:is(:hover, :focus) {
-  background-color: greenyellow;
+  background-color: #50c878;
   transform: scale(1.1);
 }
 
@@ -239,6 +252,7 @@ legend span {
 .preview-profession {
   font-size: 18px;
   font-weight: 500;
+  color: #3c3c3c;
 }
 
 .preview-contact, #preview-skills-container {
@@ -248,8 +262,8 @@ legend span {
 }
 
 .preview-title {
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 18px;
+  color: #3c3c3c;
 }
 
 .preview-institution {

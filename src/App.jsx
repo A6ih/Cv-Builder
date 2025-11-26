@@ -87,7 +87,6 @@ function App() {
      </Section>
      <div className="save-preview">
        <button onClick={() => window.print()}>Print</button>
-       <button>Save as PDF</button>
      </div>
     </div>
     <div id="preview-container">
@@ -105,7 +104,7 @@ function App() {
         {work.map(job => {
           return (
             <div key={job.id} className="preview-info-container">
-              <p className="preview-title">{job.role}</p>
+              <h4 className="preview-title">{job.role}</h4>
               <div className="preview-institution">
                 <p>{job.company}</p>
                 <p>{job.dateStart + " " + "-" + " " + job.dateEnd}</p>
@@ -120,7 +119,7 @@ function App() {
         {education.map(edu => {
           return (
             <div key={edu.id} className="preview-info-container">
-              <p className="preview-title">{edu.degree}</p>
+              <h4 className="preview-title">{edu.degree}</h4>
               <div className="preview-institution">
                 <p>{edu.institution}</p>
                 <p>{edu.yearStart + " " + "-" + " " + edu.yearEnd}</p>
