@@ -6,7 +6,7 @@ Live preview [CV-Builder](https://clinquant-pastelito-47af7d.netlify.app/)
 
 # Features
 
-- Upadates the preview in real-time as the user is inputing the Information
+- Updates the preview in realtime as the user is inputing the Information
 - Allows user to print the CV with a click of a button
-- Allows user to add multiple feilds in Education, Experience and Skills Section
-- Prints a minimalist CV for the User no Fancy styles, just Information in a simple layout
+- Allows user to add multiple fields in Education, Experience and Skills Section
+- Prints a minimalist CV for the User, no Fancy styles, just Information in a simple layout
